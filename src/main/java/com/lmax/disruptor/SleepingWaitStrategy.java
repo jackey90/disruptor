@@ -42,7 +42,7 @@ public final class SleepingWaitStrategy implements WaitStrategy
         this.retries = retries;
     }
 
-    @Override
+    
     public long waitFor(final long sequence, Sequence cursor, final Sequence dependentSequence, final SequenceBarrier barrier)
         throws AlertException, InterruptedException
     {
@@ -57,7 +57,7 @@ public final class SleepingWaitStrategy implements WaitStrategy
         return availableSequence;
     }
 
-    @Override
+    
     public void signalAllWhenBlocking()
     {
     }

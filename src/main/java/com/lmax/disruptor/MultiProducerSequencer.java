@@ -62,7 +62,6 @@ public final class MultiProducerSequencer extends AbstractSequencer
     /**
      * @see Sequencer#hasAvailableCapacity(int)
      */
-    @Override
     public boolean hasAvailableCapacity(final int requiredCapacity)
     {
         return hasAvailableCapacity(gatingSequences, requiredCapacity, cursor.get());
@@ -90,7 +89,6 @@ public final class MultiProducerSequencer extends AbstractSequencer
     /**
      * @see Sequencer#claim(long)
      */
-    @Override
     public void claim(long sequence)
     {
         cursor.set(sequence);
@@ -99,7 +97,6 @@ public final class MultiProducerSequencer extends AbstractSequencer
     /**
      * @see Sequencer#next()
      */
-    @Override
     public long next()
     {
         return next(1);
@@ -108,7 +105,6 @@ public final class MultiProducerSequencer extends AbstractSequencer
     /**
      * @see Sequencer#next(int)
      */
-    @Override
     public long next(int n)
     {
         if (n < 1)
@@ -152,7 +148,6 @@ public final class MultiProducerSequencer extends AbstractSequencer
     /**
      * @see Sequencer#tryNext()
      */
-    @Override
     public long tryNext() throws InsufficientCapacityException
     {
         return tryNext(1);
@@ -161,7 +156,6 @@ public final class MultiProducerSequencer extends AbstractSequencer
     /**
      * @see Sequencer#tryNext(int)
      */
-    @Override
     public long tryNext(int n) throws InsufficientCapacityException
     {
         if (n < 1)
@@ -190,7 +184,6 @@ public final class MultiProducerSequencer extends AbstractSequencer
     /**
      * @see Sequencer#remainingCapacity()
      */
-    @Override
     public long remainingCapacity()
     {
         long consumed = Util.getMinimumSequence(gatingSequences, cursor.get());
@@ -211,7 +204,6 @@ public final class MultiProducerSequencer extends AbstractSequencer
     /**
      * @see Sequencer#publish(long)
      */
-    @Override
     public void publish(final long sequence)
     {
         setAvailable(sequence);
@@ -221,7 +213,6 @@ public final class MultiProducerSequencer extends AbstractSequencer
     /**
      * @see Sequencer#publish(long, long)
      */
-    @Override
     public void publish(long lo, long hi)
     {
         for (long l = lo; l <= hi; l++)
@@ -264,7 +255,6 @@ public final class MultiProducerSequencer extends AbstractSequencer
     /**
      * @see Sequencer#isAvailable(long)
      */
-    @Override
     public boolean isAvailable(long sequence)
     {
         int index = calculateIndex(sequence);
@@ -273,7 +263,6 @@ public final class MultiProducerSequencer extends AbstractSequencer
         return UNSAFE.getIntVolatile(availableBuffer, bufferAddress) == flag;
     }
 
-    @Override
     public long getHighestPublishedSequence(long lowerBound, long availableSequence)
     {
         for (long sequence = lowerBound; sequence <= availableSequence; sequence++)

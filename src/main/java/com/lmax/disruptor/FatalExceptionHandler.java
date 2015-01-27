@@ -37,7 +37,6 @@ public final class FatalExceptionHandler implements ExceptionHandler
         this.logger = logger;
     }
 
-    @Override
     public void handleEventException(final Throwable ex, final long sequence, final Object event)
     {
         logger.log(Level.SEVERE, "Exception processing: " + sequence + " " + event, ex);
@@ -45,13 +44,11 @@ public final class FatalExceptionHandler implements ExceptionHandler
         throw new RuntimeException(ex);
     }
 
-    @Override
     public void handleOnStartException(final Throwable ex)
     {
         logger.log(Level.SEVERE, "Exception during onStart()", ex);
     }
 
-    @Override
     public void handleOnShutdownException(final Throwable ex)
     {
         logger.log(Level.SEVERE, "Exception during onShutdown()", ex);

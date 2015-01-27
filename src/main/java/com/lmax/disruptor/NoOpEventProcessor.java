@@ -37,25 +37,25 @@ public final class NoOpEventProcessor implements EventProcessor
         sequence = new SequencerFollowingSequence(sequencer);
     }
 
-    @Override
+    
     public Sequence getSequence()
     {
         return sequence;
     }
 
-    @Override
+    
     public void halt()
     {
         running.set(false);
     }
 
-    @Override
+    
     public boolean isRunning()
     {
         return running.get();
     }
 
-    @Override
+    
     public void run()
     {
         if (!running.compareAndSet(false, true))
@@ -77,7 +77,7 @@ public final class NoOpEventProcessor implements EventProcessor
             this.sequencer = sequencer;
         }
 
-        @Override
+        
         public long get()
         {
             return sequencer.getCursor();
