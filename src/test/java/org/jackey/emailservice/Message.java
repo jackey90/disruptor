@@ -78,7 +78,7 @@ public class Message implements TextMessage{
 
 	public String getJMSMessageID() throws JMSException {
 		// TODO Auto-generated method stub
-		return null;
+		return r.nextInt(1000000000)+"";
 	}
 
 	public int getJMSPriority() throws JMSException {

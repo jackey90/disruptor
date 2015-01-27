@@ -16,7 +16,7 @@ public class TimeoutBlockingWaitStrategy implements WaitStrategy
         timeoutInNanos = units.toNanos(timeout);
     }
 
-    @Override
+    
     public long waitFor(final long sequence,
                         final Sequence cursorSequence,
                         final Sequence dependentSequence,
@@ -55,7 +55,7 @@ public class TimeoutBlockingWaitStrategy implements WaitStrategy
         return availableSequence;
     }
 
-    @Override
+    
     public void signalAllWhenBlocking()
     {
         lock.lock();

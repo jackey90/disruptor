@@ -32,7 +32,6 @@ public final class LiteBlockingWaitStrategy implements WaitStrategy
     private final Condition processorNotifyCondition = lock.newCondition();
     private final AtomicBoolean signalNeeded = new AtomicBoolean(false);
 
-    @Override
     public long waitFor(long sequence, Sequence cursorSequence, Sequence dependentSequence, SequenceBarrier barrier)
         throws AlertException, InterruptedException
     {
@@ -71,7 +70,6 @@ public final class LiteBlockingWaitStrategy implements WaitStrategy
         return availableSequence;
     }
 
-    @Override
     public void signalAllWhenBlocking()
     {
         if (signalNeeded.getAndSet(false))

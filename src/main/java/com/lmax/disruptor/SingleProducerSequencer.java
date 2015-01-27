@@ -66,7 +66,7 @@ public final class SingleProducerSequencer extends SingleProducerSequencerFields
     /**
      * @see Sequencer#hasAvailableCapacity(int)
      */
-    @Override
+    
     public boolean hasAvailableCapacity(final int requiredCapacity)
     {
         long nextValue = this.nextValue;
@@ -91,7 +91,7 @@ public final class SingleProducerSequencer extends SingleProducerSequencerFields
     /**
      * @see Sequencer#next()
      */
-    @Override
+    
     public long next()
     {
         return next(1);
@@ -100,7 +100,7 @@ public final class SingleProducerSequencer extends SingleProducerSequencerFields
     /**
      * @see Sequencer#next(int)
      */
-    @Override
+    
     public long next(int n)
     {
         if (n < 1)
@@ -133,7 +133,7 @@ public final class SingleProducerSequencer extends SingleProducerSequencerFields
     /**
      * @see Sequencer#tryNext()
      */
-    @Override
+    
     public long tryNext() throws InsufficientCapacityException
     {
         return tryNext(1);
@@ -142,7 +142,7 @@ public final class SingleProducerSequencer extends SingleProducerSequencerFields
     /**
      * @see Sequencer#tryNext(int)
      */
-    @Override
+    
     public long tryNext(int n) throws InsufficientCapacityException
     {
         if (n < 1)
@@ -163,7 +163,7 @@ public final class SingleProducerSequencer extends SingleProducerSequencerFields
     /**
      * @see Sequencer#remainingCapacity()
      */
-    @Override
+    
     public long remainingCapacity()
     {
         long nextValue = this.nextValue;
@@ -176,7 +176,7 @@ public final class SingleProducerSequencer extends SingleProducerSequencerFields
     /**
      * @see Sequencer#claim(long)
      */
-    @Override
+    
     public void claim(long sequence)
     {
         this.nextValue = sequence;
@@ -185,7 +185,7 @@ public final class SingleProducerSequencer extends SingleProducerSequencerFields
     /**
      * @see Sequencer#publish(long)
      */
-    @Override
+    
     public void publish(long sequence)
     {
         cursor.set(sequence);
@@ -195,7 +195,7 @@ public final class SingleProducerSequencer extends SingleProducerSequencerFields
     /**
      * @see Sequencer#publish(long, long)
      */
-    @Override
+    
     public void publish(long lo, long hi)
     {
         publish(hi);
@@ -204,13 +204,13 @@ public final class SingleProducerSequencer extends SingleProducerSequencerFields
     /**
      * @see Sequencer#isAvailable(long)
      */
-    @Override
+    
     public boolean isAvailable(long sequence)
     {
         return sequence <= cursor.get();
     }
 
-    @Override
+    
     public long getHighestPublishedSequence(long lowerBound, long availableSequence)
     {
         return availableSequence;

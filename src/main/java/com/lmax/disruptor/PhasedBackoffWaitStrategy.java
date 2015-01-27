@@ -73,7 +73,7 @@ public final class PhasedBackoffWaitStrategy implements WaitStrategy
                                              units, new SleepingWaitStrategy(0));
     }
 
-    @Override
+    
     public long waitFor(long sequence, Sequence cursor, Sequence dependentSequence, SequenceBarrier barrier)
         throws AlertException, InterruptedException, TimeoutException
     {
@@ -112,7 +112,7 @@ public final class PhasedBackoffWaitStrategy implements WaitStrategy
         while (true);
     }
 
-    @Override
+    
     public void signalAllWhenBlocking()
     {
         fallbackStrategy.signalAllWhenBlocking();

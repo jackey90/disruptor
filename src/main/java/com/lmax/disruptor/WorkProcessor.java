@@ -38,7 +38,7 @@ public final class WorkProcessor<T>
 
     private final EventReleaser eventReleaser = new EventReleaser()
     {
-        @Override
+        
         public void release()
         {
             sequence.set(Long.MAX_VALUE);
@@ -73,20 +73,20 @@ public final class WorkProcessor<T>
         }
     }
 
-    @Override
+    
     public Sequence getSequence()
     {
         return sequence;
     }
 
-    @Override
+    
     public void halt()
     {
         running.set(false);
         sequenceBarrier.alert();
     }
 
-    @Override
+    
     public boolean isRunning()
     {
         return running.get();
@@ -97,7 +97,7 @@ public final class WorkProcessor<T>
      *
      * @throws IllegalStateException if this processor is already running
      */
-    @Override
+    
     public void run()
     {
         if (!running.compareAndSet(false, true))

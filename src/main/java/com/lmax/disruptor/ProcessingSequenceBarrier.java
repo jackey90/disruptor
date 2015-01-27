@@ -46,7 +46,6 @@ final class ProcessingSequenceBarrier implements SequenceBarrier
         }
     }
 
-    @Override
     public long waitFor(final long sequence)
         throws AlertException, InterruptedException, TimeoutException
     {
@@ -62,32 +61,27 @@ final class ProcessingSequenceBarrier implements SequenceBarrier
         return sequencer.getHighestPublishedSequence(sequence, availableSequence);
     }
 
-    @Override
     public long getCursor()
     {
         return dependentSequence.get();
     }
 
-    @Override
     public boolean isAlerted()
     {
         return alerted;
     }
 
-    @Override
     public void alert()
     {
         alerted = true;
         waitStrategy.signalAllWhenBlocking();
     }
 
-    @Override
     public void clearAlert()
     {
         alerted = false;
     }
 
-    @Override
     public void checkAlert() throws AlertException
     {
         if (alerted)

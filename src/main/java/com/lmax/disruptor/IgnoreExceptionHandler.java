@@ -37,19 +37,16 @@ public final class IgnoreExceptionHandler implements ExceptionHandler
         this.logger = logger;
     }
 
-    @Override
     public void handleEventException(final Throwable ex, final long sequence, final Object event)
     {
         logger.log(Level.INFO, "Exception processing: " + sequence + " " + event, ex);
     }
 
-    @Override
     public void handleOnStartException(final Throwable ex)
     {
         logger.log(Level.INFO, "Exception during onStart()", ex);
     }
 
-    @Override
     public void handleOnShutdownException(final Throwable ex)
     {
         logger.log(Level.INFO, "Exception during onShutdown()", ex);
