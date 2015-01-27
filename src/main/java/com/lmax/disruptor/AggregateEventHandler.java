@@ -35,7 +35,6 @@ public final class AggregateEventHandler<T>
         this.eventHandlers = eventHandlers;
     }
 
-    @Override
     public void onEvent(final T event, final long sequence, final boolean endOfBatch)
         throws Exception
     {
@@ -45,7 +44,6 @@ public final class AggregateEventHandler<T>
         }
     }
 
-    @Override
     public void onStart()
     {
         for (final EventHandler<T> eventHandler : eventHandlers)
@@ -57,7 +55,6 @@ public final class AggregateEventHandler<T>
         }
     }
 
-    @Override
     public void onShutdown()
     {
         for (final EventHandler<T> eventHandler : eventHandlers)

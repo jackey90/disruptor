@@ -62,20 +62,17 @@ public final class BatchEventProcessor<T>
         timeoutHandler = (eventHandler instanceof TimeoutHandler) ? (TimeoutHandler) eventHandler : null;
     }
 
-    @Override
     public Sequence getSequence()
     {
         return sequence;
     }
 
-    @Override
     public void halt()
     {
         running.set(false);
         sequenceBarrier.alert();
     }
 
-    @Override
     public boolean isRunning()
     {
         return running.get();
@@ -101,7 +98,6 @@ public final class BatchEventProcessor<T>
      *
      * @throws IllegalStateException if this object instance is already running in a thread
      */
-    @Override
     public void run()
     {
         if (!running.compareAndSet(false, true))

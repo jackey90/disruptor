@@ -19,13 +19,11 @@ public class CustomRingBuffer<T> implements DataProvider<EventAccessor<T>>, Even
             lifecycle = handler instanceof LifecycleAware ? (LifecycleAware) handler : null;
         }
 
-        @Override
         public void onEvent(EventAccessor<T> accessor, long sequence, boolean endOfBatch) throws Exception
         {
             this.handler.onEvent(accessor.take(sequence), sequence, endOfBatch);
         }
 
-        @Override
         public void onShutdown()
         {
             if (null != lifecycle)
@@ -34,7 +32,6 @@ public class CustomRingBuffer<T> implements DataProvider<EventAccessor<T>>, Even
             }
         }
 
-        @Override
         public void onStart()
         {
             if (null != lifecycle)
@@ -68,7 +65,6 @@ public class CustomRingBuffer<T> implements DataProvider<EventAccessor<T>>, Even
     }
 
     @SuppressWarnings("unchecked")
-    @Override
     public T take(long sequence)
     {
         int index = index(sequence);
@@ -79,7 +75,6 @@ public class CustomRingBuffer<T> implements DataProvider<EventAccessor<T>>, Even
         return t;
     }
 
-    @Override
     public EventAccessor<T> get(long sequence)
     {
         return this;

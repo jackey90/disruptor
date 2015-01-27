@@ -3,7 +3,8 @@ package org.jackey.emailservice;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import sun.rmi.runtime.Log;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import com.lmax.disruptor.YieldingWaitStrategy;
 import com.lmax.disruptor.dsl.Disruptor;
@@ -19,5 +20,7 @@ public class EventListener {
 			MessageEvent.EVENT_FACTORY, BUFFER_SIZE, executor,
 			ProducerType.SINGLE, new YieldingWaitStrategy());
 	
-	
+	public void init(){
+		disruptor.handleEventsWith(handlers)
+	}
 }

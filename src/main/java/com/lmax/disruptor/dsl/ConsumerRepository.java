@@ -96,7 +96,6 @@ class ConsumerRepository<T> implements Iterable<ConsumerInfo>
         }
     }
 
-    @Override
     public Iterator<ConsumerInfo> iterator()
     {
         return consumerInfos.iterator();

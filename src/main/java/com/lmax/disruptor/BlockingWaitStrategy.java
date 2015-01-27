@@ -29,7 +29,6 @@ public final class BlockingWaitStrategy implements WaitStrategy
     private final Lock lock = new ReentrantLock();
     private final Condition processorNotifyCondition = lock.newCondition();
 
-    @Override
     public long waitFor(long sequence, Sequence cursorSequence, Sequence dependentSequence, SequenceBarrier barrier)
         throws AlertException, InterruptedException
     {
@@ -59,7 +58,6 @@ public final class BlockingWaitStrategy implements WaitStrategy
         return availableSequence;
     }
 
-    @Override
     public void signalAllWhenBlocking()
     {
         lock.lock();

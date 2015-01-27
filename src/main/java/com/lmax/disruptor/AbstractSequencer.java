@@ -58,7 +58,6 @@ public abstract class AbstractSequencer implements Sequencer
     /**
      * @see Sequencer#getCursor()
      */
-    @Override
     public final long getCursor()
     {
         return cursor.get();
@@ -67,7 +66,6 @@ public abstract class AbstractSequencer implements Sequencer
     /**
      * @see Sequencer#getBufferSize()
      */
-    @Override
     public final int getBufferSize()
     {
         return bufferSize;
@@ -76,7 +74,6 @@ public abstract class AbstractSequencer implements Sequencer
     /**
      * @see Sequencer#addGatingSequences(Sequence...)
      */
-    @Override
     public final void addGatingSequences(Sequence... gatingSequences)
     {
         SequenceGroups.addSequences(this, SEQUENCE_UPDATER, this, gatingSequences);
@@ -85,7 +82,6 @@ public abstract class AbstractSequencer implements Sequencer
     /**
      * @see Sequencer#removeGatingSequence(Sequence)
      */
-    @Override
     public boolean removeGatingSequence(Sequence sequence)
     {
         return SequenceGroups.removeSequence(this, SEQUENCE_UPDATER, sequence);
@@ -94,7 +90,6 @@ public abstract class AbstractSequencer implements Sequencer
     /**
      * @see Sequencer#getMinimumSequence()
      */
-    @Override
     public long getMinimumSequence()
     {
         return Util.getMinimumSequence(gatingSequences, cursor.get());
@@ -103,7 +98,6 @@ public abstract class AbstractSequencer implements Sequencer
     /**
      * @see Sequencer#newBarrier(Sequence...)
      */
-    @Override
     public SequenceBarrier newBarrier(Sequence... sequencesToTrack)
     {
         return new ProcessingSequenceBarrier(this, waitStrategy, cursor, sequencesToTrack);
@@ -117,7 +111,6 @@ public abstract class AbstractSequencer implements Sequencer
      * @param gatingSequences Sequence to be gated on.
      * @return A poller that will gate on this ring buffer and the supplied sequences.
      */
-    @Override
     public <T> EventPoller<T> newPoller(DataProvider<T> dataProvider, Sequence... gatingSequences)
     {
         return EventPoller.newInstance(dataProvider, this, new Sequence(), cursor, gatingSequences);

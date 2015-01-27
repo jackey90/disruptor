@@ -24,7 +24,6 @@ public enum DaemonThreadFactory implements ThreadFactory
 {
     INSTANCE;
 
-    @Override
     public Thread newThread(final Runnable r)
     {
         Thread t = new Thread(r);

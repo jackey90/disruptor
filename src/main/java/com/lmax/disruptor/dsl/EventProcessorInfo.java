@@ -48,7 +48,6 @@ class EventProcessorInfo<T> implements ConsumerInfo
         return eventprocessor;
     }
 
-    @Override
     public Sequence[] getSequences()
     {
         return new Sequence[] { eventprocessor.getSequence() };
@@ -59,40 +58,31 @@ class EventProcessorInfo<T> implements ConsumerInfo
         return handler;
     }
 
-    @Override
     public SequenceBarrier getBarrier()
     {
         return barrier;
     }
 
-    @Override
     public boolean isEndOfChain()
     {
         return endOfChain;
     }
 
-    @Override
     public void start(final Executor executor)
     {
         executor.execute(eventprocessor);
     }
 
-    @Override
     public void halt()
     {
         eventprocessor.halt();
     }
 
-    /**
-     *
-     */
-    @Override
     public void markAsUsedInBarrier()
     {
         endOfChain = false;
     }
 
-    @Override
     public boolean isRunning()
     {
         return eventprocessor.isRunning();
