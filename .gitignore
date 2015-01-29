@@ -5,11 +5,9 @@
 .DS_Store
 *~
 classes
-code
 templib
 SConstruct
 .*dblite
-pom.xml
 .project
 .classpath
 .settings
