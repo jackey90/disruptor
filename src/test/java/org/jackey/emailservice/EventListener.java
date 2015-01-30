@@ -14,8 +14,8 @@ import com.lmax.disruptor.dsl.ProducerType;
 public class EventListener {
 	private static Log logger = LogFactory.getLog(EventListener.class);
 
-	private static final long ITERATIONS = 1000000L;
-	private static final int BUFFER_SIZE = 1 << 15;
+	private static final long ITERATIONS = 3L;
+	private static final int BUFFER_SIZE = 1 << 1;
 	private final ExecutorService executor = Executors.newSingleThreadExecutor();
 	private final MessageHandler handler = new MessageHandler();
 	private final RingBuffer<MessageEvent> ringBuffer;
@@ -32,7 +32,7 @@ public class EventListener {
 	public void test(){
 		long start = System.currentTimeMillis();
 		for (long l = 0; l < ITERATIONS; l++){
-			ringBuffer.publishEvent(MessageEventTranslator.INSTANCE, Message.getMessage());
+			ringBuffer.publishEvent(MessageEvent.TRANSLATOR, Message.getMessage());
 		}
 		long opsPerSecond = (ITERATIONS * 1000L) / (System.currentTimeMillis() - start);
 		System.out.println(opsPerSecond);

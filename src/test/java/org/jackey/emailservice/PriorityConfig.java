@@ -1,12 +1,12 @@
 package org.jackey.emailservice;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class PriorityConfig {
 	
 	
-	private static Map<Integer, Integer> config = new HashMap<Integer, Integer>();
+	private static Map<Integer, Integer> config = new TreeMap<Integer, Integer>();
 
 	public static Map<Integer, Integer> getConfig() {
 		return config;

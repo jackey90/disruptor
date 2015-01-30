@@ -2,6 +2,7 @@ package org.jackey.emailservice;
 
 import java.util.Enumeration;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicLong;
 
 import javax.jms.Destination;
 import javax.jms.JMSException;
@@ -10,7 +11,14 @@ import javax.jms.TextMessage;
 public class Message implements TextMessage{
 
 	static Random r = new Random();
+	private static AtomicLong i = new AtomicLong(0L);
 
+	private long id;
+	
+	public Message(){
+		id = i.incrementAndGet();
+	}
+	
 	public void acknowledge() throws JMSException {
 		// TODO Auto-generated method stub
 
@@ -77,8 +85,7 @@ public class Message implements TextMessage{
 	}
 
 	public String getJMSMessageID() throws JMSException {
-		// TODO Auto-generated method stub
-		return r.nextInt(1000000000)+"";
+		return id + "";
 	}
 
 	public int getJMSPriority() throws JMSException {
@@ -188,7 +195,7 @@ public class Message implements TextMessage{
 
 	public void setJMSMessageID(String arg0) throws JMSException {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	public void setJMSPriority(int arg0) throws JMSException {
