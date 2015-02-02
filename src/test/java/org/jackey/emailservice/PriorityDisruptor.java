@@ -26,6 +26,16 @@ public class PriorityDisruptor {
 			ringBuffers[i] = RingBuffer.create(ProducerType.SINGLE, MessageEvent.EVENT_FACTORY, bufferSize, new BlockingWaitStrategy());
 			barriers[i] = ringBuffers[i].newBarrier();
 		}
+		
+		PriorityEventProcessor<MessageEvent>[] processors = new PriorityEventProcessor[NUM_THREAD];
+		for(i = 0; i < NUM_THREAD; i++){
+			processors[i] = new PriorityEventProcessor(ringBuffers,barriers,new MessageHandler());
+			for(int j = 0; j <ringBuffers.length; j++ ){
+				ringBuffers[j].addGatingSequences(processors[i].getSequences()[j]);
+			}
+		}
+		
+		
 	}
 
 }
