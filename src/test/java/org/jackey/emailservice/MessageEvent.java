@@ -41,5 +41,5 @@ public final class MessageEvent {
 			event.setProcesssed(false);
 		}
 	}
-	
+
 }

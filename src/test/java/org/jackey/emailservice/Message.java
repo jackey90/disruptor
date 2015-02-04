@@ -8,19 +8,45 @@ import javax.jms.Destination;
 import javax.jms.JMSException;
 import javax.jms.TextMessage;
 
-public class Message implements TextMessage{
+public class Message implements TextMessage {
 
 	static Random r = new Random();
-	private static AtomicLong i = new AtomicLong(0L);
+	private static AtomicLong i1 = new AtomicLong(0L);
+	private static AtomicLong i2 = new AtomicLong(0L);
+	private static AtomicLong i3 = new AtomicLong(0L);
 
 	private long id;
-	
-	public Message(){
-		id = i.incrementAndGet();
+	private int priority;
+
+	public Message(int priority) {
+		
+		this.priority = priority;
+		switch (priority) {
+		case 1:
+			id = i1.incrementAndGet();
+			break;
+		case 2:
+			id = i2.incrementAndGet();
+			break;
+		default:
+			id = i3.incrementAndGet();
+			break;
+		}
 	}
 	
+
+	public int getPriority() {
+		return priority;
+	}
+
+
+	public void setPriority(int priority) {
+		this.priority = priority;
+	}
+
+
+
 	public void acknowledge() throws JMSException {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -89,7 +115,7 @@ public class Message implements TextMessage{
 	}
 
 	public int getJMSPriority() throws JMSException {
-		return r.nextInt(10);
+		return priority;
 	}
 
 	public boolean getJMSRedelivered() throws JMSException {
@@ -195,7 +221,7 @@ public class Message implements TextMessage{
 
 	public void setJMSMessageID(String arg0) throws JMSException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void setJMSPriority(int arg0) throws JMSException {
@@ -252,17 +278,15 @@ public class Message implements TextMessage{
 
 	}
 
-
-	public static String generateString( int length)
-	{
-		String data="";
-		for (int i=0; i<=length; i++) {
-			data = data+(char)(r.nextInt(25)+97);
+	public static String generateString(int length) {
+		String data = "";
+		for (int i = 0; i <= length; i++) {
+			data = data + (char) (r.nextInt(25) + 97);
 		}
 		return data;
 	}
 
-	public static Message getMessage(){
-		return new Message();
+	public static Message getMessage(int priority) {
+		return new Message(priority);
 	}
 }

@@ -32,7 +32,7 @@ public class EventListener {
 	public void test(){
 		long start = System.currentTimeMillis();
 		for (long l = 0; l < ITERATIONS; l++){
-			ringBuffer.publishEvent(MessageEvent.TRANSLATOR, Message.getMessage());
+			ringBuffer.publishEvent(MessageEvent.TRANSLATOR, Message.getMessage(1));
 		}
 		long opsPerSecond = (ITERATIONS * 1000L) / (System.currentTimeMillis() - start);
 		System.out.println(opsPerSecond);
