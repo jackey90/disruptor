@@ -19,7 +19,7 @@ public class PriorityDisruptor {
 	
 	private RingBuffer<MessageEvent>[] ringBuffers;
 	private SequenceBarrier[] barriers;
-	public static final int NUM_THREAD = 100;
+	public static final int NUM_THREAD = 1000;
 
 	public static final long NUM1 = 10000;
 	public static final long NUM2 = 100000;
@@ -43,7 +43,7 @@ public class PriorityDisruptor {
 		}
 
 		final ExecutorService executor = Executors
-				.newFixedThreadPool(numOfRings);
+				.newFixedThreadPool(NUM_THREAD);
 
 		PriorityEventProcessor<MessageEvent>[] processors = new PriorityEventProcessor[NUM_THREAD];
 		for (i = 0; i < NUM_THREAD; i++) {

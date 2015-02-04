@@ -11,11 +11,11 @@ public class PriorityWaitStrategy implements WaitStrategy {
 	@Override
 	public long waitFor(long sequence, Sequence cursor,
 			Sequence dependentSequence, SequenceBarrier barrier)
-			throws AlertException, InterruptedException, TimeoutException {
+					throws AlertException, InterruptedException, TimeoutException {
 		long availableSequence;
 
 		if ((availableSequence = dependentSequence.get()) < sequence) {
-			System.out.println(dependentSequence.getClass() + " waiting for" + sequence);
+			//System.out.println(dependentSequence.getClass() + " waiting for" + sequence + ", availableSequence="+availableSequence);
 			barrier.checkAlert();
 		}
 		return availableSequence;

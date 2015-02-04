@@ -15,7 +15,7 @@ public class PriorityConfig {
 	private static PriorityConfig instance = new PriorityConfig();
 	
 	private PriorityConfig(){
-		config.put(1, 2 << 11);
+		config.put(1, 2 << 12);
 		config.put(2, 2 << 13);
 		config.put(3, 2 << 15);
 	}

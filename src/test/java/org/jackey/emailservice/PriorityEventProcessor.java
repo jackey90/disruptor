@@ -74,7 +74,7 @@ public class PriorityEventProcessor<T> implements EventProcessor {
 				if (processed) {
 					continue;
 				} else {
-					Thread.sleep(1);
+					Thread.sleep(10000);
 				}
 			} catch (AlertException e) {
 				if (!isRunning()) {
