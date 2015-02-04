@@ -23,6 +23,7 @@ public class TortureTest
     @Test
     public void shouldHandleLotsOfThreads() throws Exception
     {
+    	long start = System.currentTimeMillis();
         Disruptor<TestEvent> disruptor = new Disruptor<TestEvent>(TestEvent.FACTORY, 1 << 16, executor,
                 ProducerType.MULTI, new BusySpinWaitStrategy());
         RingBuffer<TestEvent> ringBuffer = disruptor.getRingBuffer();
@@ -65,6 +66,9 @@ public class TortureTest
             assertThat(handler.messagesSeen, is(not(0)));
             assertThat(handler.failureCount, is(0));
         }
+        long end = System.currentTimeMillis();
+        System.out.println(end - start);
+        System.out.println((20000000L*1000/(end - start)) + "/sec");
     }
 
     private Publisher[] initialise(Publisher[] publishers, RingBuffer<TestEvent> buffer,
@@ -145,12 +149,14 @@ public class TortureTest
                 int i = iterations;
                 while (--i != -1)
                 {
+                	//Thread.sleep(1000);
                     long next = ringBuffer.next();
                     TestEvent testEvent = ringBuffer.get(next);
                     testEvent.sequence = next;
                     testEvent.a = next + 13;
                     testEvent.b = next - 7;
                     testEvent.s = "wibble-" + next;
+                    //System.out.println(next);
                     ringBuffer.publish(next);
                 }
             }

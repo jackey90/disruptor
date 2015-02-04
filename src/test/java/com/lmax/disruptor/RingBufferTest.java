@@ -252,8 +252,8 @@ public class RingBufferTest
         EventTranslatorVararg<Object[]> translator = new VarArgEventTranslator();
 
         ringBuffer.publishEvent(translator, "Foo", "Bar", "Baz", "Bam");
-        ringBuffer.tryPublishEvent(translator, "Foo", "Bar", "Baz", "Bam");
-
+        //ringBuffer.tryPublishEvent(translator, "Foo", "Bar", "Baz", "Bam");
+        System.out.println((String)ringBuffer.get(ringBuffer.getCursor())[0]);
         assertThat(ringBuffer, ringBufferWithEvents("FooBarBazBam-0", "FooBarBazBam-1"));
     }
 

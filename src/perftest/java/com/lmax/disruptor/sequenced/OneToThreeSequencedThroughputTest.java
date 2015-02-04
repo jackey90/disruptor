@@ -86,6 +86,7 @@ public final class OneToThreeSequencedThroughputTest extends AbstractPerfTestDis
             results[1] = Operation.SUBTRACTION.op(results[1], i);
             results[2] = Operation.AND.op(results[2], i);
         }
+        System.out.println(results[0] +" "+ results[1] +" " + results[2] );
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -146,6 +147,7 @@ public final class OneToThreeSequencedThroughputTest extends AbstractPerfTestDis
         {
             batchEventProcessors[i].halt();
             failIfNot(results[i], handlers[i].getValue());
+            System.out.println(results[i] + "  " + handlers[i].getValue());
         }
 
         return opsPerSecond;

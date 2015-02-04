@@ -34,5 +34,6 @@ public final class EventCountingWorkHandler
     public void onEvent(final ValueEvent event) throws Exception
     {
         counters[index].set(counters[index].get() + 1L);
+        Thread.sleep(100);
     }
 }

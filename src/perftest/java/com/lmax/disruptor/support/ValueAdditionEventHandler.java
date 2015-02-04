@@ -42,7 +42,7 @@ public final class ValueAdditionEventHandler implements EventHandler<ValueEvent>
     public void onEvent(final ValueEvent event, final long sequence, final boolean endOfBatch) throws Exception
     {
         value.set(value.get() + event.getValue());
-
+        Thread.sleep(1);
         if (count == sequence)
         {
             latch.countDown();
