@@ -17,6 +17,7 @@ public class MessageHandler implements EventHandler<MessageEvent> {
 		logger.info("MessageHandler JMSMessageID=" + message.getJMSMessageID());
 		logger.info("MessageHandler Text=" + message.getText());
 		logger.info("MessageHandler JMSPriority=" + message.getJMSPriority());
+		event.setProcesssed(true);
 	}
 
 }
