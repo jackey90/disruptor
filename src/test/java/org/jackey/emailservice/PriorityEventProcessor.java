@@ -55,8 +55,9 @@ public class PriorityEventProcessor<T> implements EventProcessor {
 		}
 
 		final int len = providers.length;
-		boolean processed = false;
+		
 		while (true) {
+			boolean processed = false;
 			try {
 				for (int i = 0; i < len; i++) {
 					Sequence sequence = sequences[i];
@@ -74,7 +75,8 @@ public class PriorityEventProcessor<T> implements EventProcessor {
 				if (processed) {
 					continue;
 				} else {
-					Thread.sleep(10000);
+					System.out.println(Thread.currentThread().getName() + " sleep");
+					Thread.sleep(1000);
 				}
 			} catch (AlertException e) {
 				if (!isRunning()) {

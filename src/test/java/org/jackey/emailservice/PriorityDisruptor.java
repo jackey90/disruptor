@@ -16,7 +16,7 @@ import com.lmax.disruptor.dsl.ProducerType;
 public class PriorityDisruptor {
 
 	private static Log logger = LogFactory.getLog(PriorityDisruptor.class);
-	
+
 	private RingBuffer<MessageEvent>[] ringBuffers;
 	private SequenceBarrier[] barriers;
 	public static final int NUM_THREAD = 1000;
@@ -53,10 +53,8 @@ public class PriorityDisruptor {
 				ringBuffers[j]
 						.addGatingSequences(processors[i].getSequences()[j]);
 			}
-
 			executor.execute(processors[i]);
 		}
-
 	}
 
 	public RingBuffer<MessageEvent>[] getRingBuffers() {
@@ -76,11 +74,10 @@ public class PriorityDisruptor {
 	}
 
 	public static void main(String[] args) {
-		
+
 		logger.info("PriorityDisruptor***************************************************begin");
 		PriorityDisruptor p = new PriorityDisruptor();
 		final RingBuffer<MessageEvent>[] ringBuffers = p.getRingBuffers();
-
 
 		final ExecutorService executor = Executors.newFixedThreadPool(3);
 		executor.execute(new Runnable() {
@@ -88,6 +85,21 @@ public class PriorityDisruptor {
 			@Override
 			public void run() {
 				int i = 0;
+				while (true) {
+					if (i++ > NUM1) {
+						break;
+					}
+					ringBuffers[0].publishEvent(MessageEvent.TRANSLATOR,
+							Message.getMessage(1));
+				}
+
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+
+				i = 0;
 				while (true) {
 					if (i++ > NUM1) {
 						break;
@@ -110,6 +122,22 @@ public class PriorityDisruptor {
 					ringBuffers[1].publishEvent(MessageEvent.TRANSLATOR,
 							Message.getMessage(2));
 				}
+
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+
+				i = 0;
+				while (true) {
+					if (i++ > NUM2) {
+						break;
+					}
+					ringBuffers[1].publishEvent(MessageEvent.TRANSLATOR,
+							Message.getMessage(2));
+				}
+
 			}
 		});
 
@@ -118,6 +146,20 @@ public class PriorityDisruptor {
 			@Override
 			public void run() {
 				int i = 0;
+				while (true) {
+					if (i++ > NUM3) {
+						break;
+					}
+					ringBuffers[2].publishEvent(MessageEvent.TRANSLATOR,
+							Message.getMessage(3));
+				}
+
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+
 				while (true) {
 					if (i++ > NUM3) {
 						break;

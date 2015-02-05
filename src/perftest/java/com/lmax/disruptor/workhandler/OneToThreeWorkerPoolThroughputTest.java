@@ -35,9 +35,9 @@ import com.lmax.disruptor.util.PaddedLong;
 public final class OneToThreeWorkerPoolThroughputTest
     extends AbstractPerfTestDisruptor
 {
-    private static final int NUM_WORKERS = 1000;
-    private static final int BUFFER_SIZE = 2 << 15;
-    private static final long ITERATIONS = 10000L;
+    private static final int NUM_WORKERS = 100;
+    private static final int BUFFER_SIZE = 2 << 16;
+    private static final long ITERATIONS = 1000000L;
     private final ExecutorService executor = Executors.newFixedThreadPool(NUM_WORKERS);
 
     private final PaddedLong[] counters = new PaddedLong[NUM_WORKERS];

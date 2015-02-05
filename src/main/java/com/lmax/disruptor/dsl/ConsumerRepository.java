@@ -24,7 +24,7 @@ import java.util.*;
  *
  * @param T the type of the {@link EventHandler}
  */
-class ConsumerRepository<T> implements Iterable<ConsumerInfo>
+public class ConsumerRepository<T> implements Iterable<ConsumerInfo>
 {
     private final Map<EventHandler<?>, EventProcessorInfo<T>> eventProcessorInfoByEventHandler = new IdentityHashMap<EventHandler<?>, EventProcessorInfo<T>>();
     private final Map<Sequence, ConsumerInfo> eventProcessorInfoBySequence = new IdentityHashMap<Sequence, ConsumerInfo>();

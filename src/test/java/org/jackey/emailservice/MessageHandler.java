@@ -13,14 +13,11 @@ public class MessageHandler implements EventHandler<MessageEvent> {
 
 	public void onEvent(MessageEvent event, long sequence, boolean endOfBatch)
 			throws Exception {
-		if (!event.isProcesssed()) {
-			event.setProcesssed(true);
-			TextMessage message = event.getMessage();
-			logger.info("JMSPriority="+ message.getJMSPriority() + "JMSMessageID="
-					+ message.getJMSMessageID());
-			logger.info("MessageHandler Text=" + message.getText());
-			Thread.sleep(50);
-		}
+		TextMessage message = event.getMessage();
+		logger.info("JMSPriority=" + message.getJMSPriority() + "JMSMessageID="
+				+ message.getJMSMessageID());
+		logger.info("MessageHandler Text=" + message.getText());
+		Thread.sleep(100);
 	}
 
 }
