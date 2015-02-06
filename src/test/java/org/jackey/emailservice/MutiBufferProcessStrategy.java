@@ -9,7 +9,7 @@ import com.lmax.disruptor.TimeoutException;
 
 public interface MutiBufferProcessStrategy {
 	
-	public void process(final DataProvider[] providers,
+	public boolean process(final DataProvider[] providers,
 			SequenceBarrier[] barriers, EventHandler handler,
 			Sequence[] sequences)throws AlertException, InterruptedException, TimeoutException;
 	

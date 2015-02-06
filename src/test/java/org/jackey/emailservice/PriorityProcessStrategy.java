@@ -11,11 +11,12 @@ import com.lmax.disruptor.TimeoutException;
 public class PriorityProcessStrategy implements MutiBufferProcessStrategy {
 
 	@Override
-	public void process(private final DataProvider[] providers,
+	public boolean process(final DataProvider[] providers,
 			SequenceBarrier[] barriers, EventHandler handler,
 			Sequence[] sequences) throws AlertException, InterruptedException,
 			TimeoutException {
 		
+		return true;
 	}
 
 }
