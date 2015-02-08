@@ -62,7 +62,6 @@ public class MutiBufferWorkProccesor<T> implements EventProcessor {
 					process(0, Long.MAX_VALUE);
 					process(1, Long.MAX_VALUE);
 					process(2, Long.MAX_VALUE);
-					// System.out.println("Sleep 10000");
 					Thread.sleep(100);
 				}
 			} catch (AlertException e) {
@@ -106,9 +105,9 @@ public class MutiBufferWorkProccesor<T> implements EventProcessor {
 			}
 			// no event to process currently
 			else {
-//				System.out.println("cachedAvailableSequence="
-//						+ cachedAvailableSequence + " nextSequence="
-//						+ nextSequence);
+				System.out.println("cachedAvailableSequence="
+						+ cachedAvailableSequence + " nextSequence="
+						+ nextSequence);
 				break;
 			}
 		}

@@ -46,6 +46,7 @@ public class MutiBufferWorkerPool<T> {
 
 		final int bufferNums = ringBuffers.length;
 		workSequences = new Sequence[bufferNums];
+		//each RingBuffer has a Work Sequence
 		for(int i = 0; i < bufferNums; i++){
 			workSequences[i] = new Sequence(Sequencer.INITIAL_CURSOR_VALUE);
 		}
@@ -95,7 +96,7 @@ public class MutiBufferWorkerPool<T> {
 
 	public static class Test{
 		public static void main(String[] args) {
-			final int NUM_THREAD = 100;
+			final int NUM_THREAD = 10;
 
 			final long NUM1 = 10003;
 			final long NUM2 = 10003;
@@ -118,7 +119,6 @@ public class MutiBufferWorkerPool<T> {
 				barriers[i] = ringBuffers[i].newBarrier();
 				i++;
 			}
-
 			
 			final ExecutorService executor = Executors
 					.newFixedThreadPool(NUM_THREAD);
